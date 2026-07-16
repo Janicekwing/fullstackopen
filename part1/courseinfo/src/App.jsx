@@ -32,8 +32,6 @@ const App = () => {
     setTotal(updatedLeft + right) 
   }
 
-  debugger;
-
   const handleRightClick = () => {
     setAll(allClicks.concat('R'))
     const updatedRight = right + 1

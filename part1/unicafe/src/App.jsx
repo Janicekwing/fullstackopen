@@ -1,55 +1,29 @@
 import { useState } from 'react'
 
-const Button = (props) => {
-  return <button onClick={props.onClick}>
-    {props.text}
-  </button>
-}
-
-const StatLine = (props) => {
-  return <div> {props.text} {props.stat} </div> 
-}
-
-const Statistics = ({good,neutral,bad}) => {
-  return <div> 
-    <StatLine text = "good" stat = {good} /> 
-    <StatLine text = "neutral" stat = {neutral} />
-    <StatLine text = "bad" stat = {bad} />
-    <StatLine text = "all" stat = {good + neutral + bad} />
-    <StatLine text = "average" stat = {(good * 1 + neutral * 0 + bad * -1) / (good + neutral + bad)} />
-    <StatLine text = "positive" stat = {good/(good+neutral+bad)* 100 + "%"}  />
-  </div>
-}
+const Button = ({onClick, text}) => <button onClick={onClick}> {text} </button>
 
 const App = () => {
-  // save clicks of each button to its own State
-  const [good, setGood] = useState(0)
-  const [neutral, setNeutral] = useState(0)
-  const [bad, setBad] = useState(0)
+  const anecdotes = [
+    'If it hurts, do it more often.',
+    'Adding manpower to a late software project makes it later!',
+    'The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
+    'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
+    'Premature optimization is the root of all evil.',
+    'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
+    'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
+    'The only way to go fast, is to go well.'
+  ]
+   
+  const [selected, setSelected] = useState(0)
 
-  if (good == 0 && neutral == 0 && bad == 0) {
-    return (
-      <div>
-        <h3> give feedback </h3>
-        <Button onClick={() => setGood(good+1)} text="good" />
-        <Button onClick={() => setNeutral(neutral+1)} text="neutral" />
-        <Button onClick={() => setBad(bad+1)} text="bad" />
-
-        <h3> statistics </h3>
-        <div> No feedback provided </div>
-      </div>
-    )
+  const generateRandomIndex = () => {
+    setSelected(Math.floor(Math.random() * anecdotes.length))
   }
 
   return (
     <div>
-      <h3> give feedback </h3>
-      <Button onClick={() => setGood(good+1)} text="good" />
-      <Button onClick={() => setNeutral(neutral+1)} text="neutral" />
-      <Button onClick={() => setBad(bad+1)} text="bad" />
-
-      <h3> statistics </h3> 
-      <Statistics good = {good} neutral = {neutral} bad = {bad} /> 
+      {anecdotes[selected]}
+      <Button onClick={generateRandomIndex} text="next anecdote"/>
     </div>
   )
 }
