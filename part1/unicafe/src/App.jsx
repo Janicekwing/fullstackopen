@@ -27,12 +27,26 @@ const App = () => {
     setVotes(copy)
   }
 
+  const revealAnecdoteWithMostVotes = () => {
+    let mostVotes = 0;
+    let mostVotesIndex = 0;
+    for (let i = 0; i < anecdotes.length; i++) {
+      if (votes[i] > mostVotes) {
+        mostVotes = votes[i]
+        mostVotesIndex = i
+      } 
+    }
+    return anecdotes[mostVotesIndex]
+  }
+
+
   return (
     <div>
       <div> {anecdotes[selected]} </div>
       <div> has {votes[selected]} votes </div>
       <Button onClick={generateRandomIndex} text="next anecdote"/>
       <Button onClick={vote(selected)} text="vote"/>
+      <div> {revealAnecdoteWithMostVotes()} </div>
     </div>
   )
 }
