@@ -42,10 +42,12 @@ const App = () => {
 
   return (
     <div>
+      <h2> Anecdote of the day </h2>
       <div> {anecdotes[selected]} </div>
       <div> has {votes[selected]} votes </div>
       <Button onClick={generateRandomIndex} text="next anecdote"/>
       <Button onClick={vote(selected)} text="vote"/>
+      <h2> Anecdote with most votes </h2>
       <div> {revealAnecdoteWithMostVotes()} </div>
     </div>
   )
