@@ -5,10 +5,12 @@ const Course = (props) => {
     <div>
       <Header course={props.course.name} />
       <Content parts={props.course.parts} />
-      <Total total={props.course.parts[0].exercises + props.course.parts[1].exercises + props.course.parts[2].exercises} />
+      <Total total={props.course.parts.reduce((acc, part) => acc + part.exercises, 0)} />
     </div>
   )
 }
+
+
 
 const Header = (props) => <h1>{props.course}</h1>
 
