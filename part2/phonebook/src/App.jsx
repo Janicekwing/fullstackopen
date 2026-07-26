@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Person from './components/Person'
-
+import Form from './components/Form'
+import Filter from './components/Filter'
 
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
+  const [newID, setID] = useState(5)
   const [showAll, setShowAll] = useState(true)
   const [search, setSearch] = useState('')
  
@@ -29,10 +31,13 @@ const App = () => {
     
     const personObject = {
       name: newName,
-      number: newNumber
+      number: newNumber,
+      id: newID
     }
     setPersons(persons.concat(personObject))
     setNewName('')
+    setNewNumber('')
+    setID(newID + 1)
   }
 
   const handleNameChange = (event) => {
@@ -52,14 +57,20 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-        <div> search by name: <input value={search} onChange={filterContacts}/></div> 
-
+        
+      <Filter 
+        search={search}
+        filterContacts={filterContacts}
+      />
+      
       <h2>Add Contact</h2>
-      <form onSubmit={addName}>
-        <div> name: <input value={newName} onChange={handleNameChange}/> </div>
-        <div> number: <input value={newNumber} onChange={handleNumberChange}/> </div> 
-        <div> <button type="submit" > add </button> </div>
-      </form>
+      <Form 
+        addName={addName} 
+        newName={newName} 
+        handleNameChange={handleNameChange} 
+        newNumber={newNumber} 
+        handleNumberChange={handleNumberChange}
+      />
 
       <h2>Numbers</h2>
       <ul>
