@@ -1,5 +1,9 @@
 const Person = (props) => {
-    return <li> {props.name} {props.number} </li>
+    return <li> 
+    {props.name} 
+    {props.number}
+    <button onClick={props.delete} > delete </button>
+ </li>
 }
 
 export default Person

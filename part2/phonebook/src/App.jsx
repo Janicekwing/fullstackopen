@@ -8,7 +8,6 @@ import personService from './services/contacts'
 
 const App = () => {
   const [persons, setPersons] = useState([])
-
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newID, setID] = useState(5)
@@ -51,6 +50,15 @@ const App = () => {
 
   }
 
+  const deleteContact = id => {
+    const person = persons.find(p => p.id === id)
+    personService
+      .deleteContact(id)
+      .then(returnedPerson => {
+        setPersons(persons.filter(person => person.id !== id))
+      })
+  }
+
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
@@ -86,7 +94,7 @@ const App = () => {
       <h2>Numbers</h2>
       <ul>
         {personsToShow.map(person =>
-          <Person key={person.id} name={person.name} number={person.number}/>
+          <Person delete={()=>deleteContact(person.id)} key={person.id} name={person.name} number={person.number}/>
         )}
       </ul>
     </div>
