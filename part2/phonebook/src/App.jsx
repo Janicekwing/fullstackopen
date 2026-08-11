@@ -3,6 +3,7 @@ import axios from 'axios'
 import Person from './components/Person'
 import Form from './components/Form'
 import Filter from './components/Filter'
+import personService from './services/contacts'
 
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
     }
   ,[])
  
-  const addName = (event) => {
+  const addName = event => {
     event.preventDefault()
 
     const exists = persons.some(person =>
@@ -39,10 +40,15 @@ const App = () => {
       number: newNumber,
       id: newID
     }
-    setPersons(persons.concat(personObject))
-    setNewName('')
-    setNewNumber('')
-    setID(newID + 1)
+
+    personService
+      .create(personObject)
+      .then(returnedPerson => {
+        setPersons(persons.concat(personObject))
+        setNewName('')
+        setNewNumber('')
+      })
+
   }
 
   const handleNameChange = (event) => {
