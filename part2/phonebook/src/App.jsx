@@ -29,17 +29,24 @@ const App = () => {
     const exists = persons.some(person =>
       person.name === newName
     )
+    const oldPerson = persons.find(p => p.name === newName)
+
+    const personObject = {
+      name: newName,
+      number: newNumber
+    }
+
     if (exists) { 
-      alert(`${newName} is taken!`) 
+      const shouldUpdate = confirm(`${newName} is taken. Replace the old number?`) 
+
+      if (!shouldUpdate) return
+
+      personService.update(oldPerson.id, personObject).then(returnedPerson => (
+        setPersons(persons.map(person => person.name === oldPerson.name ? returnedPerson : person)))
+      )
       return
     }
     
-    const personObject = {
-      name: newName,
-      number: newNumber,
-      id: newID
-    }
-
     personService
       .create(personObject)
       .then(returnedPerson => {
