@@ -31,26 +31,34 @@ const App = () => {
     )
     const oldPerson = persons.find(p => p.name === newName)
 
-    const personObject = {
-      name: newName,
-      number: newNumber
-    }
-
     if (exists) { 
       const shouldUpdate = confirm(`${newName} is taken. Replace the old number?`) 
 
       if (!shouldUpdate) return
 
-      personService.update(oldPerson.id, personObject).then(returnedPerson => (
-        setPersons(persons.map(person => person.name === oldPerson.name ? returnedPerson : person)))
+      const updatedPerson = {
+        ...oldPerson,
+        number: newNumber
+      }
+
+      personService
+        .update(oldPerson.id, updatedPerson)
+        .then(returnedPerson => (
+          setPersons(persons.map(person => person.name === oldPerson.name ? returnedPerson : person))
+        )
       )
       return
     }
+
+    const newPerson = {
+      name: newName,
+      number: newNumber
+    }
     
     personService
-      .create(personObject)
+      .create(newPerson)
       .then(returnedPerson => {
-        setPersons(persons.concat(personObject))
+        setPersons(persons.concat(returnedPerson))
         setNewName('')
         setNewNumber('')
       })
@@ -99,6 +107,7 @@ const App = () => {
       />
 
       <h2>Numbers</h2>
+
       <ul>
         {personsToShow.map(person =>
           <Person delete={()=>deleteContact(person.id)} key={person.id} name={person.name} number={person.number}/>
