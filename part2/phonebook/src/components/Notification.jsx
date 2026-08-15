@@ -1,13 +1,10 @@
-const Notification = ({ message }) => {
+const Notification = ({ message, statusColor }) => {
     if (message === null) {
       return null
     }
   
-    return (
-      <div className="status">
-        {message}
-      </div>
-    )
+    if (statusColor === 'green') return <div className="status success"> {message} </div>
+    return <div className="status fail"> {message} </div>
   }
   
   export default Notification

@@ -1,43 +1,8 @@
 {
   "persons": [
     {
-      "name": "selina",
-      "number": "20",
-      "id": "kokAD63ObPw"
-    },
-    {
-      "name": "James",
-      "number": "10",
-      "id": "m7tG5KziK9Q"
-    },
-    {
-      "name": "rare",
-      "number": "818",
-      "id": "XQLciaVC5Ts"
-    },
-    {
-      "name": "wow",
-      "number": "0",
-      "id": "4fXUK295NsI"
-    },
-    {
-      "name": "hello",
-      "number": "78",
-      "id": "9q6sMdixav0"
-    },
-    {
-      "name": "jack",
-      "number": "18",
-      "id": "1MM4RmvayOg"
-    },
-    {
-      "name": "hi",
-      "number": "100",
-      "id": "POwa4xzpeOw"
-    },
-    {
       "name": "ji",
-      "number": "0",
+      "number": "1",
       "id": "2QSs1bV2z1k"
     },
     {
@@ -129,6 +94,16 @@
       "name": "bro",
       "number": "10",
       "id": "FZ1EVL9IKoc"
+    },
+    {
+      "name": "he",
+      "number": "10",
+      "id": "qxOPhBilaPs"
+    },
+    {
+      "name": "homie",
+      "number": "1",
+      "id": "grAoycGU7JU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

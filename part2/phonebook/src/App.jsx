@@ -15,6 +15,7 @@ const App = () => {
   const [showAll, setShowAll] = useState(true)
   const [search, setSearch] = useState('')
   const [statusMessage, setStatusMessage] = useState(null)
+  const [statusColor, setStatusColor] = useState('green')
   
 
   useEffect( () => {
@@ -46,14 +47,23 @@ const App = () => {
 
       personService
         .update(oldPerson.id, updatedPerson)
-        .then(returnedPerson => (
+        .then(returnedPerson => 
           setPersons(persons.map(person => person.name === oldPerson.name ? returnedPerson : person))
         )
-      )
+        .catch(error => {
+          setStatusMessage(`Sorry! ${oldPerson.name} was already deleted`)
+          setStatusColor('red')
 
-      setStatusMessage(
-        `Successfully updated ${updatedPerson.name}!`
-      )
+          setTimeout(() => {
+            setStatusMessage(null)
+          }, 2000)
+
+          setPersons(persons.filter(person => person.id !== oldPerson.id))
+        })
+      
+
+      setStatusMessage(`Successfully updated ${updatedPerson.name}!`)
+      setStatusColor('green')
       setTimeout(() => {
         setStatusMessage(null)
       }, 2000)
@@ -73,9 +83,8 @@ const App = () => {
         setNewNumber('')
       })
 
-    setStatusMessage(
-      `Successfully added ${newPerson.name}!`
-    )
+    setStatusMessage(`Successfully added ${newPerson.name}!`)
+    setStatusColor('green')
     setTimeout(() => {
       setStatusMessage(null)
     }, 2000)
@@ -108,7 +117,7 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
 
-      <Notification message={statusMessage} />
+      <Notification message={statusMessage} statusColor = {statusColor}/>
         
       <Filter 
         search={search}
