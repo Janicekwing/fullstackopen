@@ -2,12 +2,12 @@
   "persons": [
     {
       "name": "selina",
-      "number": "2501",
+      "number": "20",
       "id": "kokAD63ObPw"
     },
     {
       "name": "James",
-      "number": "617",
+      "number": "10",
       "id": "m7tG5KziK9Q"
     },
     {
@@ -109,6 +109,26 @@
       "name": "hipp",
       "number": "100",
       "id": "EmyOkDKUrBw"
+    },
+    {
+      "name": "boom",
+      "number": "10",
+      "id": "7JCXYWfYZa4"
+    },
+    {
+      "name": "hah",
+      "number": "1000",
+      "id": "4XXTT8elrPY"
+    },
+    {
+      "name": "selinab",
+      "number": "20",
+      "id": "mCuHZf3TgcA"
+    },
+    {
+      "name": "bro",
+      "number": "10",
+      "id": "FZ1EVL9IKoc"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -4,7 +4,8 @@ import Person from './components/Person'
 import Form from './components/Form'
 import Filter from './components/Filter'
 import personService from './services/contacts'
-
+import Notification from './components/Notification'
+import './index.css'
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -13,6 +14,8 @@ const App = () => {
   const [newID, setID] = useState(5)
   const [showAll, setShowAll] = useState(true)
   const [search, setSearch] = useState('')
+  const [statusMessage, setStatusMessage] = useState(null)
+  
 
   useEffect( () => {
       const eventHandler = response => {
@@ -47,6 +50,13 @@ const App = () => {
           setPersons(persons.map(person => person.name === oldPerson.name ? returnedPerson : person))
         )
       )
+
+      setStatusMessage(
+        `Successfully updated ${updatedPerson.name}!`
+      )
+      setTimeout(() => {
+        setStatusMessage(null)
+      }, 2000)
       return
     }
 
@@ -63,6 +73,12 @@ const App = () => {
         setNewNumber('')
       })
 
+    setStatusMessage(
+      `Successfully added ${newPerson.name}!`
+    )
+    setTimeout(() => {
+      setStatusMessage(null)
+    }, 2000)
   }
 
   const deleteContact = id => {
@@ -91,6 +107,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+
+      <Notification message={statusMessage} />
         
       <Filter 
         search={search}
