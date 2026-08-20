@@ -4,18 +4,16 @@ const Country = (props) => {
     if (props.countries.length > 10) return "Too many matches, specify another filter"
     
     if (props.countries.length > 1 && props.countries.length <= 10) {
-        console.log("medium")
         return (
         <ul>
             {props.countries.map(country =>
-            <li key={country.cca3}> {country.name.common} </li>
+            <li key={country.cca3}> {country.name.common} <button onClick={()=>props.setCountry(country.name.common)}>show</button> </li>
             )}
         </ul>
         )
     }
 
     if (props.countries.length === 1) {
-        console.log(props.countries)
         return (
         <div>
             <h1> {props.countries[0].name.common} </h1>

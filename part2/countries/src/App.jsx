@@ -28,7 +28,7 @@ function App() {
         <input value={search} onChange={filterCountries} />
       </form>   
 
-    <Country countries={countriesToShow} />
+    <Country countries={countriesToShow} setCountry={(countryName)=>setSearch(countryName)} />
     </div>
   )
 }
