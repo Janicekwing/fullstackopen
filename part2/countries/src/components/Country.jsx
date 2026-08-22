@@ -1,3 +1,5 @@
+import Weather from './Weather'
+
 const Country = (props) => {
     if (props.countries.length === 0) return "Hun you misspelled the country name"
 
@@ -21,7 +23,7 @@ const Country = (props) => {
             <div> area: {props.countries[0].area} </div>
 
 
-            <h3> Languages: </h3>
+            <h2> Languages: </h2>
             <ul>
                 {Object.values(props.countries[0].languages).map(language => 
                     <li key={language}> {language} </li>
@@ -39,7 +41,10 @@ const Country = (props) => {
                 }
             />
 
+        <Weather city={props.countries[0].capital[0]} /> 
+
         </div>
+
         )
     }
 }

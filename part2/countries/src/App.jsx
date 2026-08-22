@@ -7,6 +7,7 @@ function App() {
   const [search, setSearch] = useState('')
 
   useEffect( () => {
+    
     const eventHandler = response => {
       setCountryList(response.data)
     }
