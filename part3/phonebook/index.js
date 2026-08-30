@@ -46,11 +46,23 @@ app.get('/api/persons/:id', (request, response) => {
         response.json(person)
     }
     else {
-        console.log("error")
+        console.log("id not available")
         response.status(404).end()
     }
 })
 
+app.delete('/api/persons/:id', (request, response) => {
+    const id = request.params.id
+    const target = phonebook.find(person => person.id === id)
+    if (target) {
+        phonebook.filter((person) => person != target)
+        response.status(204).end()
+    }
+    else {
+        console.log("id not available")
+        response.status(404).end()
+    }
+})
 
 const PORT = 3001
 app.listen(PORT)
