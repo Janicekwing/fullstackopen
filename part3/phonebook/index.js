@@ -73,6 +73,7 @@ const generateId = () => {
 }
 
 app.post('/api/phonebook', (request, response) => {
+    console.log(request.body.name)
     const body = request.body
     if (!body) {
         console.log("no body")
@@ -87,6 +88,14 @@ app.post('/api/phonebook', (request, response) => {
     if (!body.number) {
         return response.status(400).json({
             error: 'number missing',
+        })
+    }
+
+    const nameTaken = phonebook.find((person) => person.name === body.name)
+
+    if (nameTaken) {
+        return response.status(400).json({
+            error: 'name must be unique',
         })
     }
 
