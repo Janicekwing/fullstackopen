@@ -1,4 +1,5 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 let phonebook = [
@@ -26,6 +27,8 @@ let phonebook = [
 
 
 app.use(express.json())
+
+app.use(morgan('tiny'))
 
 app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')
@@ -73,7 +76,6 @@ const generateId = () => {
 }
 
 app.post('/api/phonebook', (request, response) => {
-    console.log(request.body.name)
     const body = request.body
     if (!body) {
         console.log("no body")
