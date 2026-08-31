@@ -28,7 +28,27 @@ let phonebook = [
 
 app.use(express.json())
 
-app.use(morgan('tiny'))
+// app.use(morgan('tiny'))
+
+app.use( morgan(':method :url :status :res[content-length] - :response-time ms :object') )
+// app.use(
+//     morgan(function (tokens, req, res) {
+//         return [
+//         tokens.method(req, res),
+//         tokens.url(req, res),
+//         tokens.status(req, res),
+//         tokens.res(req, res, 'content-length'), '-',
+//         tokens['response-time'](req, res), 'ms',
+//         JSON.stringify(req.body)
+//         ].join(' ')
+//     })
+// )
+
+morgan.token('object', function (req, res) { 
+    if (req.body) 
+        return JSON.stringify(req.body)
+    return ''
+})
 
 app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')

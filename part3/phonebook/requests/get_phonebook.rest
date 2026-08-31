@@ -11,6 +11,6 @@ POST http://localhost:3001/api/phonebook
 Content-Type: application/json
 
 {
-  "name": "Ada Lovelace",
+  "name": "Ada Lovelacel",
   "number": "617-372-5999"
 }
