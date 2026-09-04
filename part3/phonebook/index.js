@@ -28,6 +28,8 @@ let phonebook = [
 
 app.use(express.json())
 
+
+
 // app.use(morgan('tiny'))
 
 app.use( morgan(':method :url :status :res[content-length] - :response-time ms :object') )
@@ -43,6 +45,7 @@ app.use( morgan(':method :url :status :res[content-length] - :response-time ms :
 //         ].join(' ')
 //     })
 // )
+
 
 morgan.token('object', function (req, res) { 
     if (req.body) 
