@@ -5,7 +5,6 @@ import noteService from './services/notes'
 import Notification from './components/Notification'
 import Footer from './components/Footer'
 
-const baseUrl = '/api/notes'
 
 const App = () => {
   const [notes, setNotes] = useState([])
